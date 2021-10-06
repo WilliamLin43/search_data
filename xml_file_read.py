@@ -12,15 +12,18 @@ def get_xml_file_info(Query_dir,file,keyword):
     root = tree.getroot()
     
     #print(root.tag)
-    #print(root.attrib)    
+    #print(root.attrib)
+    
     tempfile = './'+str(file)+'.txt'
     print(tempfile)
     f = open(tempfile,'w',encoding="utf-8")
     
+    for Title in root.iter('ArticleTitle'):
+        #if len(Title.text) > 90:
+        f.write(Title.text +'\n')
+    
     for AbstractText in root.iter('AbstractText'):
-        #print(AbstractText.attrib)
-        #print(AbstractText.text)
-        f.write(AbstractText.text)
+        f.write(AbstractText.text+'\n')
         
     f.close
 
@@ -28,7 +31,8 @@ def get_xml_file_info(Query_dir,file,keyword):
 
 
 if __name__ == '__main__':
-    file = './test1.xml'
-    keyword = 'test'
-    get_xml_file_info(file,keyword)
+    Query_dir='./test_file'
+    file = 'test3.xml'
+    keyword = 'system'
+    get_xml_file_info(Query_dir,file,keyword)
     

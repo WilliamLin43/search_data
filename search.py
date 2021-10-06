@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import (QMainWindow, QWidget, QGridLayout, QPushButton,
                              QLabel, QAction, QFileDialog, QComboBox,QStyle,QLineEdit,QTextEdit)
 
 import xml_file_read
+import json_file_read
 import number_of_characters_words
 import number_of_sentences
 
@@ -38,6 +39,8 @@ class WinForm(QMainWindow):
         exitAction.setStatusTip('Exit application')
         exitAction.triggered.connect(qApp.quit)
         
+        
+        
         menubar = self.menuBar()
         fileMenu9 = menubar.addMenu('&Exit')
         fileMenu9.addAction(exitAction) 
@@ -47,8 +50,7 @@ class WinForm(QMainWindow):
         self.setWindowTitle ('Search key word')
         self.setWindowIcon(QIcon('icon.png')) #program icon
         
-        
-        
+      
 
     def checkfile(self):
         if os.path.isdir(self.Query_dir):
@@ -61,15 +63,25 @@ class WinForm(QMainWindow):
                     print("File name:"+str(file))
                     fileformat = file.split('.')
                     self.textEdit.append("File format:"+str(fileformat[1]))
-                    print("File format:"+str(fileformat[1]))
+                    #print("File format:"+str(fileformat[1]))
                     if fileformat[1] == 'xml':
                         xml_file_read.get_xml_file_info(self.Query_dir,file,self.keyword)
                         self.Characters,self.words = number_of_characters_words.get_words_and_Characters(file,self.keyword)
                         self.textEdit.append("Characters number:"+str(self.Characters))
                         self.textEdit.append("Words number:"+str(self.words))
-                        self.Sentences = number_of_sentences.get_sentences(file,self.keyword)
+                        self.Sentences,self.keyword_sentences = number_of_sentences.get_sentences(file,self.keyword)
                         self.textEdit.append("Sentences number:"+str(self.Sentences))
-                        self.textEdit.append("Similar sentences:"+str(self.similar_sentences))
+                    
+                    if fileformat[1] == 'json':
+                        json_file_read.get_json_file_info(self.Query_dir,file,self.keyword)
+                        self.Characters,self.words = number_of_characters_words.get_words_and_Characters(file,self.keyword)
+                        self.textEdit.append("Characters number:"+str(self.Characters))
+                        self.textEdit.append("Words number:"+str(self.words))
+                        self.Sentences,self.keyword_sentences = number_of_sentences.get_sentences(file,self.keyword)
+                        self.textEdit.append("Sentences number:"+str(self.Sentences))
+                        
+
+                        
                     
                     
 
