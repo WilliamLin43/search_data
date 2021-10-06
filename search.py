@@ -62,8 +62,8 @@ class WinForm(QMainWindow):
                     self.textEdit.append("File name:"+str(file))
                     print("File name:"+str(file))
                     fileformat = file.split('.')
-                    self.textEdit.append("File format:"+str(fileformat[1]))
-                    #print("File format:"+str(fileformat[1]))
+                    #self.textEdit.append("File format:"+str(fileformat[1]))
+                    print("File format:"+str(fileformat[1]))
                     if fileformat[1] == 'xml':
                         xml_file_read.get_xml_file_info(self.Query_dir,file,self.keyword)
                         self.Characters,self.words = number_of_characters_words.get_words_and_Characters(file,self.keyword)
