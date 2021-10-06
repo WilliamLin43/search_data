@@ -6,7 +6,7 @@ def get_xml_file_info(Query_dir,file,keyword):
     
     filepath = Query_dir +'/'+ file
     
-    print(filepath)
+    #print(filepath)
     
     tree = ET.parse(filepath)
     root = tree.getroot()
@@ -15,7 +15,7 @@ def get_xml_file_info(Query_dir,file,keyword):
     #print(root.attrib)
     
     tempfile = './'+str(file)+'.txt'
-    print(tempfile)
+    #print(tempfile)
     f = open(tempfile,'w',encoding="utf-8")
     
     for Title in root.iter('ArticleTitle'):

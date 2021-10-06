@@ -6,11 +6,11 @@ def get_words_and_Characters(file,keyword):
     tempfile = './'+str(file)+'.txt'
     f = open(tempfile, 'r',encoding="utf-8")
     read_words = f.read()
-    print(read_words)
+    #print(read_words)
     #read_words = "this is test "
      
     # original string
-    print("The original string is : " + read_words)
+    #print("The original string is : " + read_words)
      
     # using regex (findall()) function
     res = len(re.findall(r'\w+', read_words))
