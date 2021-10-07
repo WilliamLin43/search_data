@@ -20,13 +20,36 @@ def get_sentences(file,keyword):
     print('Number of sentences: ' + str(len(sentences)))
     
     tokens = word_tokenize(read_words)
+    print('Number of word: ' + str(len(tokens)))
+    #print(tokens)
+    print('Keyword of sentences: '+str(keyword))
     textList = Text(tokens)
     textList.concordance(keyword)
-    print('Keyword of sentences: '+str(keyword))
+    
+    position =''
+    keyword_sentences = ''
+    
+    for i in range(len(read_words)):
+        if keyword.casefold() == read_words[i:(i+len(keyword))].casefold():
+            print('position:' + str(i))
+            position = position + ',' + str(i)
+            cut = 20
+            if i > cut and i < len(read_words)-cut:
+                print(read_words[i-cut:i+cut])
+                keyword_sentences = keyword_sentences + read_words[i-cut:i+cut] + '\n'
+            if i > cut and i > len(read_words)-cut:
+               print(read_words[i-cut:])
+               keyword_sentences = keyword_sentences + read_words[i-cut:] + '\n'
+            if i < cut and i < len(read_words)-cut:
+                print(read_words[:i+cut])
+                keyword_sentences = keyword_sentences + read_words[:i+cut] + '\n'
+            if i < cut and i > len(read_words)-cut:
+                print(read_words)
+                keyword_sentences = keyword_sentences + read_words + '\n'
 
     
     
-    return len(sentences)
+    return len(sentences),position,keyword_sentences
 
 
 if __name__ == '__main__':

@@ -13,19 +13,38 @@ def get_words_and_Characters(file,keyword):
     #print("The original string is : " + read_words)
      
     # using regex (findall()) function
-    res = len(re.findall(r'\w+', read_words))
-     
-    # total no of words
-    print("The number of words in string are : " + str(res))
-    print("The number of Characters in string are : ", len(read_words))
-    words = res
+    res = re.findall(r'\w+', read_words)    
+    #print(res)
+    
+    
+    for i in range(len(res)):
+        if str(res[i]).lower() == str(keyword).lower():            
+            print('found keyword position:'+str(i))
+
+    
+    words = len(res)    
     Characters = len(read_words)
     
-    return Characters,words
+    total_Characters = len(re.findall(r'.+', read_words))
+    
+    lines = 0
+    lines += read_words.count('\n')
+
+
+    # total no of words
+    print("The number of words in string are : " + str(words))
+    print("The number of characters in string are : ", str(Characters))
+    print("The number of characters in string are : ", str(total_Characters))
+    print("The number of lines in string are : ", str(lines))
+    
+    
+    
+    return Characters,words,lines
 
 
 
 if __name__ == '__main__':
-    file = './test1.xml'
-    keyword = 'test'
+    Query_dir='./test_file'
+    file = 'test1.xml'
+    keyword = 'system'
     get_words_and_Characters(file,keyword)
