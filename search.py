@@ -20,7 +20,7 @@ class WinForm(QMainWindow):
         layout = QVBoxLayout ()
         
         self.nameLabel = QLabel(self)
-        self.nameLabel.setText('Key Word:')
+        self.nameLabel.setText('Keyword: ')
         self.nameLabel.setGeometry(10,50,100,50)        
         self.keywordline = QLineEdit(self)
         self.keywordline.setText('system')
@@ -72,7 +72,7 @@ class WinForm(QMainWindow):
                         self.textEdit.append("Lines number: "+str(self.lines))
                         self.Sentences,self.Position,self.keyword_sentences = number_of_sentences.get_sentences(file,self.keyword)
                         self.textEdit.append("Sentences number: "+str(self.Sentences))
-                        self.textEdit.append("keyword sentences: ")
+                        self.textEdit.append("Keyword sentences: ")
                         self.textEdit.append(str(self.keyword_sentences))                        
                         
                         
@@ -85,7 +85,7 @@ class WinForm(QMainWindow):
                         self.textEdit.append("Lines number: "+str(self.lines))
                         self.Sentences,self.Position,self.keyword_sentences = number_of_sentences.get_sentences(file,self.keyword)
                         self.textEdit.append("Sentences number: "+str(self.Sentences))
-                        self.textEdit.append("keyword sentences: ")
+                        self.textEdit.append("Keyword sentences: ")
                         self.textEdit.append(str(self.keyword_sentences))                        
                         
                         
@@ -107,7 +107,6 @@ class WinForm(QMainWindow):
         print('Search directory:' + str(self.Query_dir))
         self.checkfile()
         
-
 
                     
             
