@@ -36,16 +36,16 @@ def get_sentences(file,keyword):
             cut = 30
             if i > cut and i < len(read_words)-cut:
                 print(read_words[i-cut:i+cut])
-                keyword_sentences = keyword_sentences + read_words[i-cut:i+cut] + '\n'
+                keyword_sentences = keyword_sentences + read_words[i-cut:len(keyword)+i+cut].replace("\n", "") + '\n'
             if i > cut and i > len(read_words)-cut:
                print(read_words[i-cut:])
-               keyword_sentences = keyword_sentences + read_words[i-cut:] + '\n'
+               keyword_sentences = keyword_sentences + read_words[i-cut:].replace("\n", "") + '\n'
             if i < cut and i < len(read_words)-cut:
                 print(read_words[:i+cut])
-                keyword_sentences = keyword_sentences + read_words[:i+cut] + '\n'
+                keyword_sentences = keyword_sentences + read_words[:len(keyword)+i+cut].replace("\n", "") + '\n'
             if i < cut and i > len(read_words)-cut:
                 print(read_words)
-                keyword_sentences = keyword_sentences + read_words + '\n'
+                keyword_sentences = keyword_sentences + read_words.replace("\n", "") + '\n'
 
     
     

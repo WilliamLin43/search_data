@@ -66,32 +66,20 @@ class WinForm(QMainWindow):
                     #print("File format:"+str(fileformat[1]))
                     if fileformat[1] == 'xml':
                         xml_file_read.get_xml_file_info(self.Query_dir,file,self.keyword)
-                        self.Characters,self.words,self.lines = number_of_characters_words.get_words_and_Characters(file,self.keyword)
-                        self.textEdit.append("Characters number: "+str(self.Characters))
-                        self.textEdit.append("Words number: "+str(self.words))
-                        self.textEdit.append("Lines number: "+str(self.lines))
-                        self.Sentences,self.Position,self.keyword_sentences = number_of_sentences.get_sentences(file,self.keyword)
-                        self.textEdit.append("Sentences number: "+str(self.Sentences))
-                        self.textEdit.append("Keyword sentences: ")
-                        self.textEdit.append(str(self.keyword_sentences))                        
-                        
-                        
-                    
                     if fileformat[1] == 'json':
                         json_file_read.get_json_file_info(self.Query_dir,file,self.keyword)
-                        self.Characters,self.words,self.lines = number_of_characters_words.get_words_and_Characters(file,self.keyword)
-                        self.textEdit.append("Characters number: "+str(self.Characters))
-                        self.textEdit.append("Words number: "+str(self.words))
-                        self.textEdit.append("Lines number: "+str(self.lines))
-                        self.Sentences,self.Position,self.keyword_sentences = number_of_sentences.get_sentences(file,self.keyword)
-                        self.textEdit.append("Sentences number: "+str(self.Sentences))
-                        self.textEdit.append("Keyword sentences: ")
-                        self.textEdit.append(str(self.keyword_sentences))                        
                         
+                        
+                    self.Characters,self.words,self.lines = number_of_characters_words.get_words_and_Characters(file,self.keyword)
+                    self.textEdit.append("Characters number: "+str(self.Characters))
+                    self.textEdit.append("Words number: "+str(self.words))
+                    self.textEdit.append("Lines number: "+str(self.lines))
+                    self.Sentences,self.Position,self.keyword_sentences = number_of_sentences.get_sentences(file,self.keyword)
+                    self.textEdit.append("Sentences number: "+str(self.Sentences))
+                    self.textEdit.append("Keyword sentences: "+str(self.keyword_sentences.count('\n'))+" matches")
+                    self.textEdit.append(str(self.keyword_sentences))                        
                         
 
-                        
-                    
                     
 
     def Start(self):

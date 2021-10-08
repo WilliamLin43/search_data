@@ -25,7 +25,7 @@ def get_words_and_Characters(file,keyword):
     words = len(res)    
     Characters = len(read_words)
     
-    total_Characters = len(re.findall(r'.+', read_words))
+    total_Characters = len(re.findall(r'.', read_words))
     
     lines = 0
     lines += read_words.count('\n')
@@ -33,8 +33,8 @@ def get_words_and_Characters(file,keyword):
 
     # total no of words
     print("The number of words in string are : " + str(words))
-    print("The number of characters in string are : ", str(Characters))
-    print("The number of characters in string are : ", str(total_Characters))
+    print("The number of characters(without \) in string are : ", str(Characters))
+    print("The number of characters(without \ n) in string are : ", str(total_Characters))
     print("The number of lines in string are : ", str(lines))
     
     
