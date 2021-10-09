@@ -39,7 +39,7 @@ def get_words_and_Characters(file,keyword):
     
     
     
-    return Characters,words,lines
+    return Characters,total_Characters,words,lines
 
 
 

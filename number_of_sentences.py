@@ -17,10 +17,10 @@ def get_sentences(file,keyword):
     sentences = sent_tokenize(read_words)
     #print(sentences)
     
-    print('Number of sentences: ' + str(len(sentences)))
+    print('Number of sentences by nltk: ' + str(len(sentences)))
     
     tokens = word_tokenize(read_words)
-    print('Number of word: ' + str(len(tokens)))
+    print('Number of word by nltk: ' + str(len(tokens)))
     #print(tokens)
     print('Keyword of sentences: '+str(keyword))
     textList = Text(tokens)
@@ -47,9 +47,11 @@ def get_sentences(file,keyword):
                 print(read_words)
                 keyword_sentences = keyword_sentences + read_words.replace("\n", "") + '\n'
 
+    f1 = open(str(tempfile+'.txt'),'w',encoding="utf-8")    
+    f1.write(keyword_sentences)
+    f1.close
     
-    
-    return len(sentences),position,keyword_sentences
+    return len(sentences),len(tokens),position,keyword_sentences
 
 
 if __name__ == '__main__':

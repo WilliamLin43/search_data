@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 import os
+import time
 from PyQt5.QtGui import (QImage,QPixmap,QIcon,QFont)
 from PyQt5.QtWidgets import (QMainWindow, QWidget, QGridLayout, QPushButton, 
                              QHBoxLayout, QVBoxLayout, qApp, QApplication, 
@@ -10,7 +11,8 @@ import xml_file_read
 import json_file_read
 import number_of_characters_words
 import number_of_sentences
-
+import plot_data
+import create_html
 
 class WinForm(QMainWindow):
     def __init__(self, parent=None):
@@ -57,7 +59,12 @@ class WinForm(QMainWindow):
             files= os.listdir(self.Query_dir) #get all files
             self.textEdit.append("select and check file")
             print("select and check file")            
+            self.filename="./Search_log_"+str(time.strftime("%Y%m%d%H%M%S", time.localtime()))+".csv"            
+            fp=open(self.filename, "a")
+            fp.write("File Name,Characters1(without \),Characters2(without \ n),Words1(re),Words2(nltk),Lines,Sentences,Keyword sentences mateches\n")
+
             for file in files:
+                
                 if not os.path.isdir(file): #Check if not folder, open it                    
                     self.textEdit.append("File name: "+str(file))
                     print("File name:"+str(file))
@@ -69,15 +76,18 @@ class WinForm(QMainWindow):
                     if fileformat[1] == 'json':
                         json_file_read.get_json_file_info(self.Query_dir,file,self.keyword)
                         
-                        
-                    self.Characters,self.words,self.lines = number_of_characters_words.get_words_and_Characters(file,self.keyword)
-                    self.textEdit.append("Characters number: "+str(self.Characters))
-                    self.textEdit.append("Words number: "+str(self.words))
+                    self.Characters1,self.Characters2,self.words1,self.lines = number_of_characters_words.get_words_and_Characters(file,self.keyword)
+                    self.Sentences,self.words2,self.Position,self.keyword_sentences = number_of_sentences.get_sentences(file,self.keyword)
+                    self.textEdit.append("Characters number(without \): "+str(self.Characters1))
+                    self.textEdit.append("Characters number(without \ n): "+str(self.Characters2))
+                    self.textEdit.append("Words number by re: "+str(self.words1))
+                    self.textEdit.append("Words number by nltk: "+str(self.words2))
                     self.textEdit.append("Lines number: "+str(self.lines))
-                    self.Sentences,self.Position,self.keyword_sentences = number_of_sentences.get_sentences(file,self.keyword)
                     self.textEdit.append("Sentences number: "+str(self.Sentences))
                     self.textEdit.append("Keyword sentences: "+str(self.keyword_sentences.count('\n'))+" matches")
-                    self.textEdit.append(str(self.keyword_sentences))                        
+                    self.textEdit.append(str(self.keyword_sentences))
+                    fp.write(str(file) +','+str(self.Characters1)+','+str(self.Characters2)+','+str(self.words1)+','+str(self.words2)+','+str(self.lines)+','+str(self.Sentences)+','+str(self.keyword_sentences.count('\n'))+'\n')
+        
                         
 
                     
@@ -94,6 +104,8 @@ class WinForm(QMainWindow):
         self.textEdit.append(str(outputdata))
         print('Search directory:' + str(self.Query_dir))
         self.checkfile()
+        plot_data.plot_data(self.filename)
+        create_html.show_html(self.filename,self.keyword)
         
 
                     
