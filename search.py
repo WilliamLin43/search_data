@@ -25,7 +25,7 @@ class WinForm(QMainWindow):
         self.nameLabel.setText('Keyword: ')
         self.nameLabel.setGeometry(10,50,100,50)        
         self.keywordline = QLineEdit(self)
-        self.keywordline.setText('system')
+        self.keywordline.setText('COVID')
         self.keywordline.setGeometry(110,50,300,50)        
         
         self.openfolder = QPushButton ('Search directory', self)

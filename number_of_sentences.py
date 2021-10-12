@@ -33,15 +33,15 @@ def get_sentences(file,keyword):
         if keyword.casefold() == read_words[i:(i+len(keyword))].casefold():
             print('position:' + str(i))
             position = position + ',' + str(i)
-            cut = 30
+            cut = 20
             if i > cut and i < len(read_words)-cut:
-                print(read_words[i-cut:i+cut])
+                print(read_words[i-cut:i+len(keyword)+cut])
                 keyword_sentences = keyword_sentences + read_words[i-cut:len(keyword)+i+cut].replace("\n", "") + '\n'
             if i > cut and i > len(read_words)-cut:
                print(read_words[i-cut:])
                keyword_sentences = keyword_sentences + read_words[i-cut:].replace("\n", "") + '\n'
             if i < cut and i < len(read_words)-cut:
-                print(read_words[:i+cut])
+                print(read_words[:i+len(keyword)+cut])
                 keyword_sentences = keyword_sentences + read_words[:len(keyword)+i+cut].replace("\n", "") + '\n'
             if i < cut and i > len(read_words)-cut:
                 print(read_words)

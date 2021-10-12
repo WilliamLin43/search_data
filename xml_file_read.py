@@ -17,10 +17,15 @@ def get_xml_file_info(Query_dir,file,keyword):
     tempfile = './'+str(file)+'.txt'
     #print(tempfile)
     f = open(tempfile,'w',encoding="utf-8")
+    '''
+    for Title in root.iter('Title'):
+        if len(Title.text) > 90 and str(Title.text) != 'REFERENCES':
+            f.write(Title.text +'\n')
+    ''' 
     
-    for Title in root.iter('ArticleTitle'):
-        #if len(Title.text) > 90:
-        f.write(Title.text +'\n')
+    for ArticleTitle in root.iter('ArticleTitle'):
+        #if len(ArticleTitle.text) > 90:
+        f.write(ArticleTitle.text +'\n')
     
     for AbstractText in root.iter('AbstractText'):
         f.write(AbstractText.text+'\n')
