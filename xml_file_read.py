@@ -22,11 +22,11 @@ def get_xml_file_info(Query_dir,file,keyword):
         if len(Title.text) > 90 and str(Title.text) != 'REFERENCES':
             f.write(Title.text +'\n')
     ''' 
-    
+    '''
     for ArticleTitle in root.iter('ArticleTitle'):
         #if len(ArticleTitle.text) > 90:
         f.write(ArticleTitle.text +'\n')
-    
+    '''
     for AbstractText in root.iter('AbstractText'):
         f.write(AbstractText.text+'\n')
         

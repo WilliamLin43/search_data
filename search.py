@@ -25,7 +25,7 @@ class WinForm(QMainWindow):
         self.nameLabel.setText('Keyword: ')
         self.nameLabel.setGeometry(10,50,100,50)        
         self.keywordline = QLineEdit(self)
-        self.keywordline.setText('COVID')
+        self.keywordline.setText('Covid-19')
         self.keywordline.setGeometry(110,50,300,50)        
         
         self.openfolder = QPushButton ('Search directory', self)
@@ -61,7 +61,7 @@ class WinForm(QMainWindow):
             print("select and check file")            
             self.filename="./Search_log_"+str(time.strftime("%Y%m%d%H%M%S", time.localtime()))+".csv"            
             fp=open(self.filename, "a")
-            fp.write("File Name,Characters1(without \),Characters2(without \ n),Words1(re),Words2(nltk),Lines,Sentences,Keyword sentences mateches\n")
+            fp.write("File Name,Characters1(without empty),Words1(re),Words2(nltk),Lines,Sentences,Keyword sentences mateches\n")
 
             for file in files:
                 
@@ -76,17 +76,16 @@ class WinForm(QMainWindow):
                     if fileformat[1] == 'json':
                         json_file_read.get_json_file_info(self.Query_dir,file,self.keyword)
                         
-                    self.Characters1,self.Characters2,self.words1,self.lines = number_of_characters_words.get_words_and_Characters(file,self.keyword)
+                    self.Characters1,self.words1,self.lines = number_of_characters_words.get_words_and_Characters(file,self.keyword)
                     self.Sentences,self.words2,self.Position,self.keyword_sentences = number_of_sentences.get_sentences(file,self.keyword)
-                    self.textEdit.append("Characters number(without \): "+str(self.Characters1))
-                    self.textEdit.append("Characters number(without \ n): "+str(self.Characters2))
+                    self.textEdit.append("Characters number(without empty): "+str(self.Characters1))
                     self.textEdit.append("Words number by re: "+str(self.words1))
                     self.textEdit.append("Words number by nltk: "+str(self.words2))
                     self.textEdit.append("Lines number: "+str(self.lines))
                     self.textEdit.append("Sentences number: "+str(self.Sentences))
                     self.textEdit.append("Keyword sentences: "+str(self.keyword_sentences.count('\n'))+" matches")
                     self.textEdit.append(str(self.keyword_sentences))
-                    fp.write(str(file) +','+str(self.Characters1)+','+str(self.Characters2)+','+str(self.words1)+','+str(self.words2)+','+str(self.lines)+','+str(self.Sentences)+','+str(self.keyword_sentences.count('\n'))+'\n')
+                    fp.write(str(file) +','+str(self.Characters1)+','+str(self.words1)+','+str(self.words2)+','+str(self.lines)+','+str(self.Sentences)+','+str(self.keyword_sentences.count('\n'))+'\n')
         
                         
 

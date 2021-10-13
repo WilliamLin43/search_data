@@ -30,7 +30,7 @@ def get_sentences(file,keyword):
     keyword_sentences = ''
     
     for i in range(len(read_words)):
-        if keyword.casefold() == read_words[i:(i+len(keyword))].casefold():
+        if keyword == read_words[i:(i+len(keyword))]:
             print('position:' + str(i))
             position = position + ',' + str(i)
             cut = 20
