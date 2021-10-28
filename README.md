@@ -1,2 +1,2 @@
 # search_data
-Artificial Intelligence Information Retrieval homework1
+Artificial Intelligence Information Retrieval homework
