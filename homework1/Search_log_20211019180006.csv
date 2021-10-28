@@ -1,0 +1,7 @@
+File Name,Characters1(without empty),Words1(re),Words2(nltk),Lines,Sentences,Keyword sentences mateches
+test1.xml,1184,185,185,1,6,0
+test2.xml,1813,290,294,4,12,0
+test3.xml,625,103,103,1,6,0
+test4.json,209,35,38,2,3,1
+test5.json,221,44,44,4,3,0
+test6.json,223,50,49,10,1,0
