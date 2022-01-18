@@ -1,0 +1,10 @@
+syndrome
+children
+inflammatory
+clinical
+sars-cov-2
+multisystem
+covid-19
+patients
+disease
+infection

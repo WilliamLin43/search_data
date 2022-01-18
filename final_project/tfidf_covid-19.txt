@@ -1,0 +1,10 @@
+covid-19
+sars-cov-2
+patients
+children
+vaccine
+mis-c
+testing
+disease
+vaccines
+infection
